@@ -8,14 +8,15 @@ import kong.unirest.Unirest;
 
 public class DataPuller extends Date{
 	
-	private final String date = super.currentDate.getYear() + "-" + super.currentDate.getMonthValue() + "-" + super.currentDate.getDayOfMonth();
+	private String date;
 	private String aorp = "";
 	private final String API_KEY = "30852a756edb4613990469d8c08b51b0";
-	private final String API_URL = "https://api.sportsdata.io/v3/mlb/scores/json/GamesByDate/" + date + "?key=" + API_KEY;
+	private String API_URL = "https://api.sportsdata.io/v3/mlb/scores/json/GamesByDate/" + date + "?key=" + API_KEY;
 	
 	private String endMessage = "";
 	
-	public DataPuller() {super();}
+	public DataPuller() {super();date = super.currentDate.getYear() + "-" + super.currentDate.getMonthValue() + "-" + super.currentDate.getDayOfMonth(); API_URL = "https://api.sportsdata.io/v3/mlb/scores/json/GamesByDate/" + date + "?key=" + API_KEY; pull();}
+	public DataPuller(String year, String month, String day) {super(); date = year + "-"+month +"-"+day; System.out.println("Testing: " + date); API_URL = "https://api.sportsdata.io/v3/mlb/scores/json/GamesByDate/" + date + "?key=" + API_KEY; pull();}
 	
 	public void pull() {
 		try {
@@ -41,7 +42,7 @@ public class DataPuller extends Date{
                 		@SuppressWarnings("deprecation")
 						Time time = new Time((int)(Integer.parseInt(tempDate.substring(23,25))-13), Integer.parseInt(tempDate.substring(26,28)), Integer.parseInt(tempDate.substring(29,31)));
                 		System.out.println(time);
-                		endMessage+= "There is a cubs game today at " + time;
+                		endMessage+= "There is a cubs game on "+ date + " at " + time;
                 		break;
                 	}
                 }
@@ -52,7 +53,7 @@ public class DataPuller extends Date{
         			aorp = "AM";
         		}
                 if(endMessage.equals("")) {
-                	endMessage += "No game was found today! Enjoy the Parking!";
+                	endMessage += "No game was found on "+ date +"! Enjoy a cubs free day!";
                 }else {
                 	 endMessage += " " + aorp +"\n\nGood luck finding parking!";
                 }
