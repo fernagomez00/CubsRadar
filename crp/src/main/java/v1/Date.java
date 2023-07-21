@@ -8,10 +8,6 @@ public class Date{
 	
 	public Date() {}
 	
-	public String toString() {
-		
-		return currentDate.getMonthValue() + "/" + currentDate.getDayOfMonth() + "/" + currentDate.getYear();
-		
-	}
+	public String toString() {return currentDate.getMonthValue() + "/" + currentDate.getDayOfMonth() + "/" + currentDate.getYear();}
 
 }

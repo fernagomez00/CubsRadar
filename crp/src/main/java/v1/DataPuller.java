@@ -39,7 +39,7 @@ public class DataPuller extends Date{
                 	if(r[i].contains("CHC")) {
                 		
                 		@SuppressWarnings("deprecation")
-						Time time = new Time(Integer.parseInt(tempDate.substring(23,25))-12, Integer.parseInt(tempDate.substring(26,28)), Integer.parseInt(tempDate.substring(29,31)));
+						Time time = new Time((int)(Integer.parseInt(tempDate.substring(23,25))-13), Integer.parseInt(tempDate.substring(26,28)), Integer.parseInt(tempDate.substring(29,31)));
                 		System.out.println(time);
                 		endMessage+= "There is a cubs game today at " + time;
                 		break;
